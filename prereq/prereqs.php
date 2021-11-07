@@ -26,7 +26,7 @@ if(isset($_SESSION['user'])){
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <h3>logged user:<?php echo $_SESSION['user']?></h3>
-        <a style="margin: 10px" href="login.php">log out</a>
+        <a style="margin: 10px" href="../login.php">log out</a>
     </head>
     
     <body id="prereqOptionsPage">
