@@ -6,9 +6,13 @@ include 'mysql.php';
 $name = $_POST['name'];
 $program = $_POST['program'];
 $tel = $_POST['tel'];
+$password = $_POST['password'];
+$email = $_POST['email'];
+$address = $_POST['address'];
+
 
 //sql query
-$sql = "insert into student (name,program,tel) values ('$name','$program','$tel')";//常规写法
+$sql = "insert into student (name,program,tel, password, email, address) values ('$name','$program','$tel', '$password', '$email', '$address')";
 
 if(mysqli_query($conn,$sql))
 {

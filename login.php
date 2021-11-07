@@ -7,78 +7,43 @@ if(isset($_SESSION)){
     session_destroy();
 }
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>login</title>
-    <link href="https://fonts.googleapis.com/css?familymPermanent+Marker" >
-</head>
-<body>
-<div class="sign-div">
-    <form class="" action="check_login.php" method="post">
-        <h2>Welcome to INTI course registration system</h2>
+<html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>Registration Login</title>
+        
+        <link href="https://fonts.googleapis.com/css?familymPermanent+Marker" >
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="RegistrationStyle.css" > 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        
+    </head>
+    
+    <body id="loginPage">
+        
+        <div class="jumbotron text-center">
+            <h1>INTI College</h1>
+        </div>
+    
+        <div class="container-fluid bg-grey text-center" >
+            <div class="row">
+                <div class="col">
+                    <form class="" action="check_login.php" method="post">
+                        <input class="sign-text" type="text" name="name" placeholder="Username" >
+                        <br>
+                        <br>
+                        <input class="sign-text" type="password" name="password" placeholder="Password">
+                        <br>
+                        <br>
+                        <input type="submit" value="Login"/>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-        <input class="sign-text" type="text" name="name" placeholder="Username" >
-        <input class="sign-text" type="password" name="password" placeholder="Password">
-        <input type="submit" value="login"/>
-    </form>
-</div>
-<style>
-    body{
-        margin: 0;
-        padding: 0;
-        background: #487eb0;
-    }
-    .sign-div{
-        width: 500px;
-        padding: 20px;
-        text-align: center;
-        background: url(bg02.jpg);
-        position:absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        overflow: hidden;
-    }
-    .sign-div h1 ,h2{
-        margin-top: 100px;
-        color: #fff;
-        font-size: 40px;
-    }
-    .sign-div input{
-        display: block;
-        width: 100%;
-        padding: 0 16px;
-        height: 44px;
-        text-align: center;
-        box-sizing: border-box;
-        outline: none;
-        border: none;
-        font-family: "montserrat",sans-serif;
-    }
-    .sign-text{
-        margin:4px;
-        background: rgba(255,255,255,5);
-        border-radius: 6px;
-    }
-
-    .sign-btn:hover{
-        transform:scale(0.96);
-    }
-    .sign-div a{
-        text-decoration: none;
-        color: #fff;
-        font-family: "montserrat", sans-serif;
-        font-size: 14px;
-        padding: 10px;
-        transition: 0.8s;
-        display: block;
-    }
-    .sign-div a:hover{
-        background: rgba(0,0,0,.3);
-    }
-</style>
-
-</body>
+    </body>
 </html>
