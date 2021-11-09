@@ -4,8 +4,9 @@ include '../mysql.php';
 
 // get data
 $name = $_POST['name'];
+$password = $_POST['password'];
 // sql query
-$sql = "insert into advisor (name) values ('$name')";
+$sql = "insert into advisor (name, password) values ('$name', '$password')";
 
 if(mysqli_query($conn,$sql))
 {

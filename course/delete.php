@@ -11,6 +11,6 @@ if(mysqli_query($conn,$sql))
     print('Loading...<br>Will redirect to home page after 1 seconds');
 }else {
     echo 'Failed to delete '.mysqli_affected_rows($conn).' rows';
-    header("refresh:3;url=index_admin.php");
-    print('Loading...<br>Will redirect to home page after 3 seconds');
+    header("refresh:1;url=index_admin.php");
+    print('Loading...<br>Will redirect to home page after 1 seconds');
 }

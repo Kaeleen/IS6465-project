@@ -2,17 +2,22 @@
 include 'mysql.php';
 
 
-//get post
+// get post
 $name = $_POST['name'];
 $program = $_POST['program'];
 $tel = $_POST['tel'];
+$dob = $_POST['dob'];
 $password = $_POST['password'];
-$email = $_POST['email'];
 $address = $_POST['address'];
+$email = $_POST['email'];
 
+$program_sql = "select program_id from program where program_name = '$program'";
+$program_res = mysqli_query($conn,$program_sql);
+$row = mysqli_fetch_assoc($program_res);
+$program_id = $row['program_id'];
 
 //sql query
-$sql = "insert into student (name,program,tel, password, email, address) values ('$name','$program','$tel', '$password', '$email', '$address')";
+$sql = "insert into student (name,program_id,tel, dob, password, address, email) values ('$name','$program_id','$tel', '$dob', '$password', '$address', '$email')";
 
 if(mysqli_query($conn,$sql))
 {

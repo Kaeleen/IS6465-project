@@ -52,7 +52,7 @@ if(isset($_SESSION['student'])){
 </head>
 <body>
 <div class="adds-stu-wrap">
-    <h2 class="head" style="text-align:center">Add Course</h2>
+    <h2 class="head" style="text-align:center">Add enrollment Info</h2>
     <div class="adds-stu">
         <form action="add_enrollment_do.php" method="post">
 <!--            <div>-->

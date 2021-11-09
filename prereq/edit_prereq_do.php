@@ -9,11 +9,11 @@ $sql = "update prereq set prereq_name='$prereq_name',credit='$credit' where prer
 
 if(mysqli_query($conn,$sql))
 {
-    echo 'id is '.mysqli_affected_rows($conn).' Updated succesfully!';
+    echo ' Updated succesfully!';
     header("refresh:1;url=prereqs.php");
     print('Loading...<br>Will redirect to homepage after 1 seconds');
 }else{
     echo 'No data';
-    header("refresh:3;url=index_admin.php");
-    print('Loading...<br>Will redirect to homepage after 3 seconds');
+    header("refresh:1;url=index_admin.php");
+    print('Loading...<br>Will redirect to homepage after 1 seconds');
 }

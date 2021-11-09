@@ -1,8 +1,8 @@
 <?php
 include '../mysql.php';
 session_start();
-$name = $_SESSION['student'];
-$student_id = $_SESSION['student_id'];
+$name = $_SESSION['user'];
+$advisor_id = $_SESSION['advisor_id'];
 $year_sql = "select * from course";
 $year_result = mysqli_query($conn,$year_sql);
 
@@ -23,14 +23,14 @@ while($row = mysqli_fetch_assoc($courseResult)) {
     $coursrIds[] = $row['course_id'];
 }
 $coursrIds = implode(',', $coursrIds);
-$sql = "select * from student where name = '$name' limit 1";
-$sql2 = "select enrollment.* ,course.* from enrollment join course on enrollment.course_id=course.course_id where enrollment.student_id = '$student_id' and  enrollment.course_id  in ($coursrIds)";
+$sql = "select * from advisor where advisor_id = '$advisor_id' limit 1";
+$sql2 = "select enrollment.* ,course.* from enrollment join course on enrollment.course_id=course.course_id where  enrollment.course_id  in ($coursrIds)";
 
 $result = mysqli_query($conn,$sql);
 $result2 = mysqli_query($conn,$sql2);
-if(isset($_SESSION['student'])){
+if(isset($_SESSION['user'])){
 }else{
-    header('Refresh:0.0001;url=login.php');
+    header('Refresh:0.0001;url=../login.php');
     echo "<script> alert('illegal access!')</script>";
     exit();
 }
@@ -44,8 +44,8 @@ if(isset($_SESSION['student'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <title>Student_info</title>
-    <h3>logged user:<?php echo $_SESSION['student']?></h3>
+    <title>Advisor_info</title>
+    <h3>logged user:<?php echo $_SESSION['user']?></h3>
     <a style="margin: 10px" href="../login.php">log out</a>
 
 </head>
@@ -57,18 +57,16 @@ if(isset($_SESSION['student'])){
 <h2 style="float:left;width:100%;margin-top:50px; text-align:center">INTI Course Registration System</h2>
 <table style="margin-top:60px" align="center" width="60%" border="" cellspacing="0" cellpadding="0">
 
-    <tr><th>id</th><th>Name</th><th>Program</th><th>Tel.</th><th>Options</th></tr>
+    <tr><th>id</th><th>Name</th><th>Options</th></tr>
     <?php
     while ($row = mysqli_fetch_assoc($result)) {
     ?>
             <tr style='background-color:aqua'>
 
-                <td align="center"><?php echo  $row['student_id'];  ?></td>
+                <td align="center"><?php echo  $row['advisor_id'];  ?></td>
                 <td align="center"><?php echo  $row['name'];  ?></td>
-                <td align="center"><?php echo  $row['program'];  ?></td>
-                <td align="center"><?php echo  $row['tel'];  ?></td>
                 <td align="center">
-                    <a href="edit.php?id=<?php echo  $row['student_id'];  ?>" style="color:forestgreen">Update</a>
+                    <a href="edit.php?id=<?php echo  $row['advisor_id'];  ?>" style="color:forestgreen">Update</a>
                 </td>
             </tr>
     <?php
@@ -76,9 +74,6 @@ if(isset($_SESSION['student'])){
     ?>
 </table>
 
-<div style="text-align:center;margin-top: 100px">
-    <a href="add_enrollment.php" style="padding:3px;font-size:16px;background-color:greenyellow">Add New Course</a>
-</div>
 <div style="text-align: center;margin-top: 80px">
     year:
     <select name="year" id="year">
@@ -130,7 +125,7 @@ if(isset($_SESSION['student'])){
        function search(){
            var $year = $("#year").val(),
                $semester  = $("#semester").val();
-           location.href = 'index_student.php?year='+$year+'&semester='+$semester
+           location.href = 'index_advisor.php?year='+$year+'&semester='+$semester
        }
 </script>
 </html>

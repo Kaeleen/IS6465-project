@@ -1,6 +1,6 @@
 <?php
 include 'mysql.php';
-$sql = "select * from student";
+$sql = "select student.*,program.program_name from student join program on program.program_id = student.program_id";
 $result = mysqli_query($conn,$sql);
 session_start();
 if(isset($_SESSION['user'])){
@@ -42,13 +42,12 @@ if(isset($_SESSION['user'])){
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Student</a></li>
+                        <li><a href="index_admin.php">Student</a></li>
                         <li><a href="advisor/advisor.php">Advisor</a></li>
                         <li><a href="faculty/faculty.php">Faculty</a></li>
                         <li><a href="course/course.php">Course</a></li>
-                        <li><a href="session/session.php">Session</a></li>
-                        <li><a href="prereq/prereqs.php">Prerequisites</a></li>
                         <li><a href="program/program.php">Program</a></li>
+                        <li><a href="report.php">Reports</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,11 +69,10 @@ if(isset($_SESSION['user'])){
                 
             <div class="col justify-content-center">
                 <table class="table">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Program</th>
-                    <th>Telephone</th>
-                    <th>Options</th>
+                    <th style="text-align:center">ID</th>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">Program</th>
+                    <th style="text-align:center">Options</th>
 
                     <?php
                     if (mysqli_num_rows($result) > 0)
@@ -83,14 +81,12 @@ if(isset($_SESSION['user'])){
                         {
                     ?>
                             <tr>
-                                <td><?php echo  $row['student_id'];  ?></td>
-                                <td><?php echo  $row['name'];  ?></td>
-                                <td><?php echo  $row['program'];  ?></td>
-                                <td><?php echo  $row['tel'];  ?></td>
-                                <td>
-                                    <a href="edit_student.php?id=<?php echo  $row['student_id'];  ?>">Update</a> | 
+                                <td align="center"><?php echo  $row['student_id'];  ?></td>
+                                <td align="center"><?php echo  $row['name'];  ?></td>
+                                <td align="center"><?php echo  $row['program_name'];  ?></td>
+                                <td aligh='center'> 
                                     <a href="javascript:del_sure(<?php echo  $row['student_id'];  ?>)">Delete</a> | 
-                                    <a href="detail_student.php?id=<?php echo  $row['student_id'];  ?>">Detail</a>
+                                    <a href="edit_student.php?year=2021&semester=Fall&id=<?php echo  $row['student_id'];  ?>">Detail</a>
                                 </td>
                             </tr>
                             <?php

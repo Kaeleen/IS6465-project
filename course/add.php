@@ -62,20 +62,12 @@ if(isset($_SESSION['user'])){
                 <input type="text" name="credit" id="">
             </div>
             <div>
-                <p>quota:</p>
-                <input type="text" name="quota" id="">
-            </div>
-            <div>
                 <p>semester:</p>
                 <input type="text" name="semester" id="">
             </div>
             <div>
                 <p>year:</p>
                 <input type="text" name="year" id="">
-            </div>
-            <div>
-                <p>opne_for_enrollment:</p>
-                <input type="text" name="opne_for_enrollment" id="">
             </div>
             <div>
                 <p>department_id:</p>

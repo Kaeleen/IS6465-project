@@ -14,7 +14,7 @@ if(isset($_SESSION['user'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add advisor Info</title>
+    <title>Add Advisor Info</title>
     <style>
         .adds-stu-wrap{
             width: 700px;
@@ -50,12 +50,16 @@ if(isset($_SESSION['user'])){
 </head>
 <body>
 <div class="adds-stu-wrap">
-    <h2 class="head" style="text-align:center">Add Advisor Info</h2>
+    <h2 class="head" style="text-align:center">Add advisor Info</h2>
     <div class="adds-stu">
         <form action="add_do.php" method="post">
             <div>
-                <p>name:</p>
+                <p>Name:</p>
                 <input type="text" name="name" id="">
+            </div>
+            <div>
+                <p>Password:</p>
+                <input type="text" name="password" id="">
             </div>
             <div style="text-align: center">
                 <button >Submit</button>

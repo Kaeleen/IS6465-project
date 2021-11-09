@@ -48,7 +48,7 @@ $result = mysqli_query($conn,$sql);
 </head>
 <body>
 <div class="adds-stu-wrap">
-    <h2 class="head" style="text-align:center">Update Student Info</h2>
+    <h2 class="head" style="text-align:center">Update student info</h2>
     <div class="adds-stu">
         <form action="edit_do.php" method="post">
             <?php

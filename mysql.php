@@ -1,14 +1,14 @@
 <?php
+
 $servername = "localhost:3306";
 $username = "root";
 $password = "";
-$dbname = "proj_DB";
+$dbname = "project_new";
 $char   = 'utf8';
-
-# create connection
+// create connection
 $conn = mysqli_connect($servername, $username, $password,
     $dbname);
-
+// check connection
 if (!$conn) {
     die("Connectionfailed: " . mysqli_connect_error());
 }

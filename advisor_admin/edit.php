@@ -12,7 +12,7 @@ $result = mysqli_query($conn,$sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Update Advisor Info</title>
+    <title>Update advisor info</title>
     <style>
         .adds-stu-wrap{
             width: 700px;
@@ -48,7 +48,7 @@ $result = mysqli_query($conn,$sql);
 </head>
 <body>
 <div class="adds-stu-wrap">
-    <h2 class="head" style="text-align:center">Update Advisor Info</h2>
+    <h2 class="head" style="text-align:center">Update advisor info</h2>
     <div class="adds-stu">
         <form action="edit_do.php" method="post">
             <?php
@@ -62,12 +62,10 @@ $result = mysqli_query($conn,$sql);
                         <input type="text" name="name" id="" value="<?php echo  $row['name'];  ?>">
                         <input type="hidden" name="id" id="" value="<?php echo  $row['advisor_id'];  ?>">
                     </div>
-
                     <div>
-                        <p>Password:</p>
-                        <input type="text" name="password" id="" value="<?php echo  $row['password'];  ?>">
+                        <p>Password.:</p>
+                        <input type="text" name="password" id="" value="">
                     </div>
-
                     <div>
                         <button>Submit</button>
                     </div>

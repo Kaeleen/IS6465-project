@@ -40,13 +40,12 @@ if(isset($_SESSION['user'])){
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Student</a></li>
+                        <li><a href="../index_admin.php">Student</a></li>
                         <li><a href="../advisor/advisor.php">Advisor</a></li>
                         <li><a href="../faculty/faculty.php">Faculty</a></li>
                         <li><a href="../course/course.php">Course</a></li>
-                        <li><a href="../session/session.php">Session</a></li>
-                        <li><a href="../prereq/prereqs.php">Prerequisites</a></li>
                         <li><a href="../program/program.php">Program</a></li>
+                        <li><a href="../report.php">Reports</a></li>
                     </ul>
                 </div>
             </div>
@@ -68,16 +67,12 @@ if(isset($_SESSION['user'])){
 
             <div class="col justify-content-center">
                 <table class="table">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Credit</th>
-                    <th>Quota</th>
-                    <th>Semester</th>
-                    <th>Year</th>
-                    <th>Open for Enrollment</th>
-                    <th>Department ID</th>
-                    <th>Prerequisite ID</th>
-                    <th>Options</th>
+                    <th style="text-align:center">ID</th>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">Credit</th>
+                    <th style="text-align:center">Semester</th>
+                    <th style="text-align:center">Year</th>
+                    <th style="text-align:center">Options</th>
                     <?php
                     if (mysqli_num_rows($result) > 0)
                     {
@@ -86,18 +81,13 @@ if(isset($_SESSION['user'])){
                             ?>
                             <tr>
                                 <td><?php echo  $row['course_id'];  ?></td>
-                                <td><?php echo  $row['name'];  ?></td>
+                                <td><?php echo  $row['course_name'];  ?></td>
                                 <td><?php echo  $row['credit'];  ?></td>
-                                <td><?php echo  $row['quota'];  ?></td>
                                 <td><?php echo  $row['semester'];  ?></td>
                                 <td><?php echo  $row['year'];  ?></td>
-                                <td><?php echo  $row['open_for_enrollment'];  ?></td>
-                                <td><?php echo  $row['department_id'];  ?></td>
-                                <td><?php echo  $row['prereq_id'];  ?></td>
                                 <td>
-                                    <a href="edit.php?id=<?php echo  $row['course_id'];  ?>">Update</a> | 
-                                    <a href="javascript:del_sure(<?php echo  $row['course_id'];  ?>)">Delete</a> | 
-                                    <a href="detail.php?id=<?php echo  $row['course_id'];  ?>">Details</a>
+                                    <a href="edit.php?id=<?php echo  $row['course_id'];  ?>">Details</a> | 
+                                    <a href="javascript:del_sure(<?php echo  $row['course_id'];  ?>)">Delete</a> 
                                 </td>
                             </tr>
                             <?php

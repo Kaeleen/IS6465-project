@@ -50,7 +50,7 @@ if(isset($_SESSION['user'])){
 </head>
 <body>
 <div class="adds-stu-wrap">
-    <h2 class="head" style="text-align:center">Add Session Info</h2>
+    <h2 class="head" style="text-align:center">Add session Info</h2>
     <div class="adds-stu">
         <form action="add_do.php" method="post">
             <div>
