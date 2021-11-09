@@ -83,7 +83,7 @@ if(isset($_SESSION['user'])){
                                 <td><?php echo  $row['program_name'];  ?></td>
                                 <td>
                                     <a href="edit.php?id=<?php echo  $row['program_id'];  ?>">Update</a> | 
-                                    <a href="javascript:del_sure(<?php echo  $row['program_id'];  ?>)">Delete</a> | 
+                                    <a href="javascript:del_sure(<?php echo  $row['program_id'];  ?>)">Delete</a> 
                                 </td>
                             </tr>
                             <?php
