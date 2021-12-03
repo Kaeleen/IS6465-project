@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 03, 2021 at 07:19 PM
+-- Generation Time: Dec 03, 2021 at 08:47 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.3.21
 
@@ -99,15 +99,15 @@ INSERT INTO `course` (`course_id`, `course_name`, `credit`, `semester`, `year`, 
 (3, 'Natural Language Processing', 3.00, 'Fall', '2020', NULL, 1, '', NULL),
 (4, 'Data Science and Big Data', 2.00, 'Summer', '2020', '', 2, '1,3', NULL),
 (5, 'Information Technology ', 3.00, 'Spring', '2019', '', 2, '1,2', NULL),
-(7, 'Intro to computer basics', 3.00, 'Spring', '2019', '', 1, '', NULL),
-(8, 'Accounting Fundamentals', 4.00, 'Fall', '2021', '', 3, '', NULL),
-(9, 'Intro to Architecture', 3.00, 'Fall', '2021', '', 4, '', NULL),
-(10, 'Business Analysis', 4.00, 'Fall', '2020', '', 2, '5,6', NULL),
-(11, 'Global Business Studies', 4.00, 'Fall', '2020', '', 2, '5', NULL),
-(12, 'Principles of Economics', 4.00, 'Fall', '2020', '', 2, '3,5', NULL),
-(13, 'Macroeconomic Theory', 4.00, 'Fall', '2020', '', 2, '1,5', NULL),
-(14, 'Computers and Society', 3.00, 'Spring', '2019', '', 1, '', NULL),
-(15, 'Computer Organization and Architecture', 4.00, 'Spring', '2019', '', 1, '3', NULL);
+(6, 'Intro to computer basics', 3.00, 'Spring', '2019', '', 1, '', NULL),
+(7, 'Accounting Fundamentals', 4.00, 'Fall', '2021', '', 3, '', NULL),
+(8, 'Intro to Architecture', 3.00, 'Fall', '2021', '', 4, '', NULL),
+(9, 'Business Analysis', 4.00, 'Fall', '2020', '', 2, '5,6', NULL),
+(10, 'Global Business Studies', 4.00, 'Fall', '2020', '', 2, '5', NULL),
+(11, 'Principles of Economics', 4.00, 'Fall', '2020', '', 2, '3,5', NULL),
+(12, 'Macroeconomic Theory', 4.00, 'Fall', '2020', '', 2, '1,5', NULL),
+(13, 'Computers and Society', 3.00, 'Spring', '2019', '', 1, '', NULL),
+(14, 'Computer Organization and Architecture', 4.00, 'Spring', '2019', '', 1, '3', NULL);
 
 -- --------------------------------------------------------
 
@@ -249,12 +249,12 @@ INSERT INTO `program` (`program_id`, `type`, `program_name`) VALUES
 (2, 'MS', 'MS in Information Systems'),
 (3, 'MS', 'MS in Finance'),
 (4, 'BS', 'BS in Information Systems'),
-(6, 'BS', 'BS in Architecture'),
-(7, 'MS', 'MS in Physics'),
-(8, 'BS', 'BS in Biology'),
-(9, 'BS', 'BS in Mathematics'),
-(10, 'BS', 'BS in Geology'),
-(11, 'MS', 'MS in Business Analysis');
+(5, 'BS', 'BS in Architecture'),
+(6, 'MS', 'MS in Physics'),
+(7, 'BS', 'BS in Biology'),
+(8, 'BS', 'BS in Mathematics'),
+(9, 'BS', 'BS in Geology'),
+(10, 'MS', 'MS in Business Analysis');
 
 -- --------------------------------------------------------
 
@@ -295,8 +295,7 @@ INSERT INTO `session` (`session_id`, `session_name`, `s_days`, `s_time`, `quota`
 (14, '1', 'Monday', '7-9am', 10, 11, 5, 'KZ 101'),
 (15, '1', 'Thursday', '6-10pm', 10, 12, 8, 'OP 101'),
 (16, '1', 'Monday and Wednesday', '10-12am', 15, 13, 1, 'OP 155'),
-(17, '1', 'Wednesday', '2-4pm', 15, 14, 7, 'OP 604'),
-(18, '1', 'Thursday', '1-3pm', 12, 15, 6, 'BG 3107');
+(17, '1', 'Wednesday', '2-4pm', 15, 14, 7, 'OP 604');
 
 -- --------------------------------------------------------
 
@@ -324,11 +323,11 @@ CREATE TABLE IF NOT EXISTS `student` (
 INSERT INTO `student` (`student_id`, `name`, `email`, `address`, `password`, `program_id`, `tel`, `dob`) VALUES
 (1, 'Ka', 'kaeleen1211@gmail.com', '1520 6th XYZ Street', '123', 1, '5183013605', '12/11/1995'),
 (2, 'Lee', 'lee.david@outlook.com', '200 S 600 E', '123', 2, '6548512648', '08/26/1996'),
-(3, 'Jacob', 'jacob@outlook.com', NULL, '123', 10, '5312465124', '03/17/1995'),
+(3, 'Jacob', 'jacob@outlook.com', NULL, '123', 9, '5312465124', '03/17/1995'),
 (4, 'Zoey Wilson', NULL, NULL, '123', 3, '4548878965', '02/15/1992'),
-(7, 'William Davis', NULL, NULL, '123', 4, '8016245973', NULL),
-(8, 'Sophia', NULL, NULL, '123', 5, '3215456215', NULL),
-(9, 'Emma', NULL, NULL, '123', 6, '5621254125', NULL);
+(5, 'William Davis', NULL, NULL, '123', 4, '8016245973', NULL),
+(6, 'Sophia', NULL, NULL, '123', 5, '3215456215', NULL),
+(7, 'Emma', NULL, NULL, '123', 6, '5621254125', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,5 +1,17 @@
 <?php
 include '../mysql.php';
+$sql1 = "select * from prereq";
+$prereq_result = mysqli_query($conn,$sql1);
+
+$sql2 = "select * from faculty";
+$faculty_result = mysqli_query($conn,$sql2);
+
+$sql3 = "select * from advisor";
+$advisor_result = mysqli_query($conn,$sql3);
+
+$sql4 = "select * from department";
+$department_result = mysqli_query($conn,$sql4);
+
 session_start();
 if(isset($_SESSION['user'])){
 }else{
@@ -14,7 +26,7 @@ if(isset($_SESSION['user'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Course Info</title>
+    <title>Add New Course</title>
     <style>
         .adds-stu-wrap{
             width: 700px;
@@ -50,7 +62,7 @@ if(isset($_SESSION['user'])){
 </head>
 <body>
 <div class="adds-stu-wrap">
-    <h2 class="head" style="text-align:center">Add course Info</h2>
+    <h2 class="head" style="text-align:center">Add New Course</h2>
     <div class="adds-stu">
         <form action="add_do.php" method="post">
             <div>
@@ -69,13 +81,38 @@ if(isset($_SESSION['user'])){
                 <p>year:</p>
                 <input type="text" name="year" id="">
             </div>
+    
             <div>
-                <p>department_id:</p>
-                <input type="text" name="department_id" id="">
+                <p>department:</p>
+                 <select name="department">
+                    <?php
+                    if(mysqli_num_rows($department_result) > 0){
+                        while ($row = mysqli_fetch_assoc($department_result)) {
+                            ?>
+                            <option value ="<?php echo  $row['department_name'];  ?>"><?php echo  $row['department_name'];  ?></option>
+                            <?php
+                        }
+                    }else{
+                        echo 'No data';
+                    }
+                    ?>
+                </select>
             </div>
             <div>
-                <p>prereq_id:</p>
-                <input type="text" name="prereq_id" id="">
+                <p>prerequisite:</p>
+                 <select name="prereq">
+                    <?php
+                    if(mysqli_num_rows($prereq_result) > 0){
+                        while ($row = mysqli_fetch_assoc($prereq_result)) {
+                            ?>
+                            <option value ="<?php echo  $row['prereq_name'];  ?>"><?php echo  $row['prereq_name'];  ?></option>
+                            <?php
+                        }
+                    }else{
+                        echo 'No data';
+                    }
+                    ?>
+                </select>
             </div>
             session1
             <div>
@@ -86,17 +123,29 @@ if(isset($_SESSION['user'])){
                 <p>s_time:</p>
                 <input type="text" name="s_time" id="">
             </div>
-            <div>
+         <!--    <div>
                 <p>course_id:</p>
                 <input type="text" name="course_id" id="">
-            </div>
+            </div> -->
             <div>
                 <p>quota:</p>
                 <input type="text" name="quota" id="">
             </div>
             <div>
-                <p>advisor_id:</p>
-                <input type="text" name="advisor_id" id="">
+                <p>advisor:</p>
+                <select name="advisor">
+                    <?php
+                    if(mysqli_num_rows($advisor_result) > 0){
+                        while ($row = mysqli_fetch_assoc($advisor_result)) {
+                            ?>
+                            <option value ="<?php echo  $row['name'];  ?>"><?php echo  $row['name'];  ?></option>
+                            <?php
+                        }
+                    }else{
+                        echo 'No data';
+                    }
+                    ?>
+                </select>
             </div>
             <div>
                 <p>location:</p>
