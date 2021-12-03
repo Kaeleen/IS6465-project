@@ -1,21 +1,8 @@
 <?php
 include '../mysql.php';
-
-
-$name = $_POST['name'];
-$credit = $_POST['credit'];
-$semester = $_POST['semester'];
-$year = $_POST['year'];
-$open_for_enrollment = $_POST['open_for_enrollment'];
-$department_id = (int)$_POST['department_id'];
-$prereq_id = $_POST['prereq_id'];
-// sql query
-$sql = "insert into course (course_name,credit,semester,year,open_for_enrollment,department_id,prereq_id) values ('$name','$credit','$semester','$year','$open_for_enrollment','$department_id','$prereq_id')";
-if(mysqli_query($conn,$sql))
-{
     $s_days = $_POST['s_days'];
     $s_time = $_POST['s_time'];
-    $course_id = mysqli_insert_id($conn);
+    $course_id = $_POST['course_id'];
     $advisor_id = $_POST['advisor_id'];
     $quota = $_POST['quota'];
     $location = $_POST['location'];
@@ -28,6 +15,4 @@ if(mysqli_query($conn,$sql))
     }else{
         echo 'No data';
     }
-}else{
-    echo 'No data';
-}
+

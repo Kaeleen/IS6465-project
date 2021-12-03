@@ -9,7 +9,7 @@ if(isset($_SESSION['user'])){
     echo "<script> alert('illegal access!')</script>";
     exit();
 }
- ?>
+?>
 
 
 <!DOCTYPE html>
@@ -69,10 +69,10 @@ if(isset($_SESSION['user'])){
                 
             <div class="col justify-content-center">
                 <table class="table">
-                    <th style="text-align:center">ID</th>
-                    <th style="text-align:center">Name</th>
-                    <th style="text-align:center">Program</th>
-                    <th style="text-align:center">Options</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Program</th>
+                    <th>Options</th>
 
                     <?php
                     if (mysqli_num_rows($result) > 0)
@@ -81,10 +81,10 @@ if(isset($_SESSION['user'])){
                         {
                     ?>
                             <tr>
-                                <td align="center"><?php echo  $row['student_id'];  ?></td>
-                                <td align="center"><?php echo  $row['name'];  ?></td>
-                                <td align="center"><?php echo  $row['program_name'];  ?></td>
-                                <td aligh='center'> 
+                                <td><?php echo  $row['student_id'];  ?></td>
+                                <td><?php echo  $row['name'];  ?></td>
+                                <td><?php echo  $row['program_name'];  ?></td>
+                                <td> 
                                     <a href="javascript:del_sure(<?php echo  $row['student_id'];  ?>)">Delete</a> | 
                                     <a href="edit_student.php?year=2021&semester=Fall&id=<?php echo  $row['student_id'];  ?>">Detail</a>
                                 </td>

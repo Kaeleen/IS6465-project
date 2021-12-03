@@ -1,7 +1,7 @@
 <?php
 include 'mysql.php';
 $student_id = $_GET['id'];
-$sql = "select student.*,program.program_name from student join program on program.program_id = student.program_id and student_id=$student_id = $student_id;
+$sql = "select student.*,program.program_name from student join program on program.program_id = student.program_id and student_id=$student_id;
 ";
 $result = mysqli_query($conn,$sql);
 $student_info = mysqli_fetch_assoc($result);
@@ -59,7 +59,7 @@ $semester = array_unique($semester);
     </style>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <a style="margin: 10px" href="edit_student.php?year=2021&semester=Fall&id=1">Go Back</a>
+    <a style="margin: 10px" href="edit_student.php?year=2021&semester=Fall&id=<?php echo  $student_info['student_id'];  ?>">Go Back</a>
 </head>
 <body>
 <div class="adds-stu-wrap" style="display: block">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 09, 2021 at 07:59 PM
+-- Generation Time: Dec 03, 2021 at 07:19 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.3.21
 
@@ -40,8 +40,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `name`, `password`) VALUES
-(1, 'admin', '123'),
-(2, 'h', '123');
+(1, 'admin', '123');
 
 -- --------------------------------------------------------
 
@@ -88,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `prereq_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`course_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `course`
@@ -97,13 +96,18 @@ CREATE TABLE IF NOT EXISTS `course` (
 INSERT INTO `course` (`course_id`, `course_name`, `credit`, `semester`, `year`, `open_for_enrollment`, `department_id`, `prereq_id`, `description`) VALUES
 (1, 'Machine Learning ', 4.00, 'Fall', '2021', '', 1, '1,2', NULL),
 (2, 'Advanced algorithums', 4.00, 'Fall', '2021', '', 1, '4', NULL),
-(3, 'Algorithums', 3.00, 'Fall', '2020', NULL, 1, '', NULL),
-(4, 'Data Science and Big Data', 2.00, 'Summer', '2020', '', 2, '3', NULL),
-(5, 'Information Technology ', 3.00, 'Spring', '2019', '', 2, '2', NULL),
-(7, 'Intro to comp programming', 3.00, 'Spring', '2019', '', 1, '', NULL),
+(3, 'Natural Language Processing', 3.00, 'Fall', '2020', NULL, 1, '', NULL),
+(4, 'Data Science and Big Data', 2.00, 'Summer', '2020', '', 2, '1,3', NULL),
+(5, 'Information Technology ', 3.00, 'Spring', '2019', '', 2, '1,2', NULL),
+(7, 'Intro to computer basics', 3.00, 'Spring', '2019', '', 1, '', NULL),
 (8, 'Accounting Fundamentals', 4.00, 'Fall', '2021', '', 3, '', NULL),
 (9, 'Intro to Architecture', 3.00, 'Fall', '2021', '', 4, '', NULL),
-(10, 'test', 4.00, 'Fall', '2020', '', 0, '1', NULL);
+(10, 'Business Analysis', 4.00, 'Fall', '2020', '', 2, '5,6', NULL),
+(11, 'Global Business Studies', 4.00, 'Fall', '2020', '', 2, '5', NULL),
+(12, 'Principles of Economics', 4.00, 'Fall', '2020', '', 2, '3,5', NULL),
+(13, 'Macroeconomic Theory', 4.00, 'Fall', '2020', '', 2, '1,5', NULL),
+(14, 'Computers and Society', 3.00, 'Spring', '2019', '', 1, '', NULL),
+(15, 'Computer Organization and Architecture', 4.00, 'Spring', '2019', '', 1, '3', NULL);
 
 -- --------------------------------------------------------
 
@@ -145,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `enrollment` (
   `date_enrolled` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `date_dropped` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`enrollment_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `enrollment`
@@ -156,7 +160,20 @@ INSERT INTO `enrollment` (`enrollment_id`, `student_id`, `course_id`, `session_i
 (2, 1, 2, 6, NULL, '2021-08-15', NULL),
 (3, 1, 4, 5, 3.20, '2020-04-20', NULL),
 (4, 1, 5, 8, 3.50, '2019-01-07', NULL),
-(5, 1, 7, 10, 3.20, '2019-01-07', NULL);
+(5, 1, 7, 10, 3.20, '2019-01-07', NULL),
+(7, 1, 10, 13, 3.10, '2021-12-03', NULL),
+(8, 1, 3, 7, 3.00, '2021-12-03', NULL),
+(9, 1, 12, 15, 2.00, '2021-12-03', NULL),
+(11, 2, 3, 7, 1.50, '2021-12-03', NULL),
+(12, 2, 10, 13, 3.60, '2021-12-03', NULL),
+(13, 3, 10, 13, 3.70, '2021-12-03', NULL),
+(14, 4, 10, 13, 3.30, '2021-12-03', NULL),
+(15, 4, 3, 7, 2.60, '2021-12-03', NULL),
+(16, 4, 1, 1, 0.00, '2021-12-03', NULL),
+(17, 4, 2, 6, 2.60, '2021-12-03', NULL),
+(18, 4, 9, 12, 3.30, '2021-12-03', NULL),
+(19, 1, 8, 11, 0.00, '2021-12-03', '2021-12-03'),
+(21, 1, 9, 12, 0.00, '2021-12-03', NULL);
 
 -- --------------------------------------------------------
 
@@ -205,7 +222,9 @@ INSERT INTO `prereq` (`prereq_id`, `prereq_name`, `credit`) VALUES
 (1, 'Algorithums', '3'),
 (2, 'Intro to comp programming', '3'),
 (3, 'Mathematics', '4'),
-(4, 'Writing', '3');
+(4, 'Writing', '3'),
+(5, 'Intro to Business', '3'),
+(6, 'Intro to Corporate Sustainability', '3');
 
 -- --------------------------------------------------------
 
@@ -254,23 +273,30 @@ CREATE TABLE IF NOT EXISTS `session` (
   `advisor_id` int DEFAULT NULL,
   `location` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`session_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `session`
 --
 
 INSERT INTO `session` (`session_id`, `session_name`, `s_days`, `s_time`, `quota`, `course_id`, `advisor_id`, `location`) VALUES
-(1, 'session1', 'Tuesday and Wednesday', '2-4pm', 10, 1, 1, 'WEB 123'),
-(2, 'session2', 'Monday and Thursday', '2-4pm', 10, 1, 2, 'WEB 456'),
-(3, 'session3', 'Tuesday', '6-10pm', 5, 4, 3, 'SFEBB 123'),
-(5, 'session4', 'Monday', '1-5pm', 5, 4, 3, 'SFEBB 503'),
-(6, 'session5', 'Thursday and Monday', '9-11am', 30, 2, 4, 'ABC 102'),
-(7, 'session6', 'Friday', '1-3pm', 20, 3, 5, 'ABC 698'),
-(8, 'session7', 'Thursday', '4-6pm', 15, 5, 3, 'XYZ 201'),
-(9, 'session8', 'Monday', '7-9am', 20, 6, 6, 'XYZ 207'),
-(10, 'session9', 'Tuesday', '1-3pm', 10, 7, 7, 'WD 103'),
-(11, 'session10', 'Friday', '8-10am', 25, 8, 8, 'WD 605');
+(1, '1', 'Tuesday and Wednesday', '2-4pm', 10, 1, 1, 'WEB 123'),
+(2, '2', 'Monday and Thursday', '2-4pm', 10, 1, 2, 'WEB 456'),
+(3, '1', 'Tuesday', '6-10pm', 5, 4, 3, 'SFEBB 123'),
+(5, '2', 'Monday', '1-5pm', 5, 4, 3, 'SFEBB 503'),
+(6, '1', 'Thursday and Monday', '9-11am', 30, 2, 4, 'ABC 102'),
+(7, '1', 'Friday', '1-3pm', 20, 3, 5, 'ABC 698'),
+(8, '1', 'Thursday', '4-6pm', 15, 5, 3, 'XYZ 201'),
+(9, '1', 'Monday', '7-9am', 20, 6, 6, 'XYZ 207'),
+(10, '1', 'Tuesday', '1-3pm', 10, 7, 7, 'WD 103'),
+(11, '1', 'Friday', '8-10am', 25, 8, 8, 'WD 605'),
+(12, '1', 'Tuesday', '8-10am', 15, 9, 3, 'WD 123'),
+(13, '1', 'Thursday', '1-3pm', 10, 10, 4, 'KZ 1523'),
+(14, '1', 'Monday', '7-9am', 10, 11, 5, 'KZ 101'),
+(15, '1', 'Thursday', '6-10pm', 10, 12, 8, 'OP 101'),
+(16, '1', 'Monday and Wednesday', '10-12am', 15, 13, 1, 'OP 155'),
+(17, '1', 'Wednesday', '2-4pm', 15, 14, 7, 'OP 604'),
+(18, '1', 'Thursday', '1-3pm', 12, 15, 6, 'BG 3107');
 
 -- --------------------------------------------------------
 
@@ -296,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 
 INSERT INTO `student` (`student_id`, `name`, `email`, `address`, `password`, `program_id`, `tel`, `dob`) VALUES
-(1, 'Fu', 'kaeleen1211@gmail.com', '1520 6th ABC Street', '123', 1, '5183013605', '12/11/1995'),
+(1, 'Ka', 'kaeleen1211@gmail.com', '1520 6th XYZ Street', '123', 1, '5183013605', '12/11/1995'),
 (2, 'Lee', 'lee.david@outlook.com', '200 S 600 E', '123', 2, '6548512648', '08/26/1996'),
 (3, 'Jacob', 'jacob@outlook.com', NULL, '123', 10, '5312465124', '03/17/1995'),
 (4, 'Zoey Wilson', NULL, NULL, '123', 3, '4548878965', '02/15/1992'),

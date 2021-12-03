@@ -77,6 +77,31 @@ if(isset($_SESSION['user'])){
                 <p>prereq_id:</p>
                 <input type="text" name="prereq_id" id="">
             </div>
+            session1
+            <div>
+                <p>s_days:</p>
+                <input type="text" name="s_days" id="">
+            </div>
+            <div>
+                <p>s_time:</p>
+                <input type="text" name="s_time" id="">
+            </div>
+            <div>
+                <p>course_id:</p>
+                <input type="text" name="course_id" id="">
+            </div>
+            <div>
+                <p>quota:</p>
+                <input type="text" name="quota" id="">
+            </div>
+            <div>
+                <p>advisor_id:</p>
+                <input type="text" name="advisor_id" id="">
+            </div>
+            <div>
+                <p>location:</p>
+                <input type="text" name="location" id="">
+            </div>
             <div style="text-align: center">
                 <button >Submit</button>
             </div>

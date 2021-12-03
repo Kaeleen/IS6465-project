@@ -6,9 +6,8 @@ $pass = $_POST['password'];
 // query username and password from database
 $sqlsel="select name,password from admin where name='$name' and password='$pass'";
 $result=mysqli_query($conn, $sqlsel);
-
+session_start();
 if($result->num_rows==1){
-    session_start();
     $_SESSION['user'] = $name;
 //    $_SESSION['username'] = $name;
 //    var_dump($_SESSION);
@@ -18,9 +17,7 @@ if($result->num_rows==1){
 }else {
     $sqlsel = "select * from advisor where name='$name' and password='$pass'";
     $result = mysqli_query($conn, $sqlsel);
-
     if ($result->num_rows == 1) {
-        session_start();
         $_SESSION['user'] = $name;
         $row = mysqli_fetch_assoc($result);
         $_SESSION['advisor_id'] = $row['advisor_id'];
@@ -30,9 +27,7 @@ if($result->num_rows==1){
     } else {
         $sqlsel = "select * from student where name='$name' and password='$pass'";
         $result = mysqli_query($conn, $sqlsel);
-
         if ($result->num_rows == 1) {
-            session_start();
             $_SESSION['student'] = $name;
             $row = mysqli_fetch_assoc($result);
             $_SESSION['student_id'] = $row['student_id'];
