@@ -24,7 +24,7 @@ $semester = array_unique($semester);
         <title>Reports</title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="RegistrationStyle.css" > 
+        <link rel="stylesheet" href="../RegistrationStyle.css" > 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
         
@@ -35,7 +35,7 @@ $semester = array_unique($semester);
         <script src="https://cdn.staticfile.org/jquery/3.1.1/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-        <a style="margin: 10px" href="../login.php">log out</a>
+        <a style="margin: 10px" href="../login.php">Log out</a>
     </head>
 
 <body id="app4">
@@ -85,8 +85,8 @@ $semester = array_unique($semester);
                 <div class="form-group col-md-6">
                     <label class="control-label col-md-4" for="GPA">GPA:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="text" name="gpa1" id="gpa1"  value="">
-                        <input class="form-control" type="text" name="gpa2" id="gpa2"  value="">
+                        <input class="form-control" type="text" name="gpa1" id="gpa1" onfocus="this.value=''" value="(From 1)">
+                        <input class="form-control" type="text" name="gpa2" id="gpa2" onfocus="this.value=''" value="(To 4)">
                         <span class="btn btn-default" onclick="report_by_student()">Go</span>
                     </div>
                 </div>
@@ -137,8 +137,8 @@ $semester = array_unique($semester);
                     <div class="form-group col-md-6">
                         <label class="control-label col-md-4"  for="enrollmentCount">Enrollment Count:</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="text" name="count1"  id="count1" value="">
-                            <input class="form-control" type="text" name="count2" id="count2"  value="">
+                            <input class="form-control" type="text" name="count1"  id="count1" onfocus="this.value=''" value="(From 1)">
+                            <input class="form-control" type="text" name="count2" id="count2"  onfocus="this.value=''" value="(To 100)">
                             <span class="btn btn-default" onclick="report_by_student1()">Go</span>
                         </div>
                     </div>
