@@ -3,31 +3,10 @@ include '../mysql.php';
 session_start();
 $name = $_SESSION['user'];
 $advisor_id = $_SESSION['advisor_id'];
-$year_sql = "select * from course";
-$year_result = mysqli_query($conn,$year_sql);
 
-$year = $semester = [];
-while ($row = mysqli_fetch_assoc($year_result)) {
-    $year[] =$row['year'];
-    $semester[]=$row['semester'];
-}
-$year = array_unique($year);
-$semester = array_unique($semester);
-
-$year_get = $_GET['year'] ?  $_GET['year'] : '2021';
-$semester_get = $_GET['semester'] ? $_GET['semester'] : 'Fall';
-$courseSql = "select course_id from course where year = '$year_get' and semester = '$semester_get'";
-$courseResult = mysqli_query($conn,$courseSql);
-$coursrIds = [];
-while($row = mysqli_fetch_assoc($courseResult)) {
-    $coursrIds[] = $row['course_id'];
-}
-$coursrIds = implode(',', $coursrIds);
-$sql = "select * from advisor where advisor_id = '$advisor_id' limit 1";
-$sql2 = "select enrollment.* ,course.* from enrollment join course on enrollment.course_id=course.course_id where  enrollment.course_id  in ($coursrIds)";
-
+$sql = "select student.*,program.program_name from student join program on program.program_id = student.program_id";
 $result = mysqli_query($conn,$sql);
-$result2 = mysqli_query($conn,$sql2);
+
 if(isset($_SESSION['user'])){
 }else{
     header('Refresh:0.0001;url=../login.php');
@@ -38,94 +17,87 @@ if(isset($_SESSION['user'])){
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <title>Advisor_info</title>
-    <h3>logged user:<?php echo $_SESSION['user']?></h3>
-    <a style="margin: 10px" href="../login.php">log out</a>
+    <head>
+        <title>Advisor Homepage</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="RegistrationStyle.css" > 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
-</head>
-<body>
+        <h3>logged user:<?php echo $_SESSION['user']?></h3>
+        <a style="margin: 10px" href="../login.php">log out</a>
 
-<nav style="text-align: center">
+    </head>
 
-</nav>
-<h2 style="float:left;width:100%;margin-top:50px; text-align:center">INTI Course Registration System</h2>
-<table style="margin-top:60px" align="center" width="60%" border="" cellspacing="0" cellpadding="0">
+    <body id="OptionsPage">
+        
+    <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#OptionsPage"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index_advisor.php">Student</a></li>
+                        <li><a href="course/course.php">Course</a></li>
+                        <li><a href="report.php">Reports</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+    <!-- Header -->
+        <div class="jumbotron text-center">
+            <h1>INTI College</h1>
+        </div>
+    
+    <!-- Table -->
+        <div class="container-fluid bg-grey text-center" >
+            <div class="row">
+                <div class="col">
+                    <?php echo mysqli_num_rows($result); ?> student(s) exist.
+                </div>
+            </div>
+                
+            <div class="col justify-content-center">
+                <table class="table">
+                    <th style="text-align:center">ID</th>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">Program</th>
+                    <th style="text-align:center">Options</th>
 
-    <tr><th>id</th><th>Name</th><th>Options</th></tr>
-    <?php
-    while ($row = mysqli_fetch_assoc($result)) {
-    ?>
-            <tr style='background-color:aqua'>
-
-                <td align="center"><?php echo  $row['advisor_id'];  ?></td>
-                <td align="center"><?php echo  $row['name'];  ?></td>
-                <td align="center">
-                    <a href="edit.php?id=<?php echo  $row['advisor_id'];  ?>" style="color:forestgreen">Update</a>
-                </td>
-            </tr>
-    <?php
-        }
-    ?>
-</table>
-
-<div style="text-align: center;margin-top: 80px">
-    year:
-    <select name="year" id="year">
-        <?php
-          foreach ($year as $item){
-                ?>
-                <option value ="<?php echo  $item;  ?>" <?php if ($item == $year_get){ ?>selected="" <?php } ?> ><?php echo  $item;  ?></option>
-                <?php
-            }
-
-        ?>
-    </select>
-    semester:
-    <select name="semester" id="semester">
-        <?php
-        foreach ($semester as $item){
-            ?>
-            <option value ="<?php echo  $item;  ?>" <?php if ($item == $semester_get){ ?>selected="" <?php } ?>><?php echo  $item;  ?></option>
-            <?php
-        }
-        ?>
-    </select>
-    <button onclick="search()">go</button>
-</div>
-<table style="margin-top:60px" align="center" width="60%" border="" cellspacing="0" cellpadding="0">
-    <tr><th>course_id</th><th>year</th><th>semester</th><th>course</th><th>grade</th><th>date_enrolled</th><th>date_dropped</th></tr>
-    <?php
-    if ($result2){
-    if(mysqli_num_rows($result2) > 0){
-        while ($row = mysqli_fetch_assoc($result2)) {
-            ?>
-            <tr style='background-color:aqua'>
-<!--                <td align="center">--><?php //echo  $row['enroll_id'];  ?><!--</td>-->
-                <td align="center"><?php echo  $row['course_id'];  ?></td>
-                <td align="center"><?php echo  $row['year'];  ?></td>
-                <td align="center"><?php echo  $row['semester'];  ?></td>
-                <td align="center"><?php echo  $row['name'];  ?></td>
-                <td align="center"><?php echo  $row['grade'];  ?></td>
-                <td align="center"><?php echo  $row['date_enrolled'];  ?></td>
-                <td align="center"><?php echo  $row['date_dropped'];  ?></td>
-            </tr>
-            <?php
-        }
-    }}
-    ?>
-</table>
-</body>
-<script>
-       function search(){
-           var $year = $("#year").val(),
-               $semester  = $("#semester").val();
-           location.href = 'index_advisor.php?year='+$year+'&semester='+$semester
-       }
-</script>
+                    <?php
+                    if (mysqli_num_rows($result) > 0)
+                    {
+                        while ($row = mysqli_fetch_assoc($result)) 
+                        {
+                    ?>
+                            <tr>
+                                <td><?php echo  $row['student_id'];  ?></td>
+                                <td><?php echo  $row['name'];  ?></td>
+                                <td><?php echo  $row['program_name'];  ?></td>
+                                <td> 
+                                    <a href="edit_student.php?year=2021&semester=Fall&id=<?php echo  $row['student_id'];  ?>">Detail</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                        echo 'No data';
+                    }
+                    ?>
+                </table>
+            </div>
+        </div>
+        
+    </body>
 </html>

@@ -21,16 +21,17 @@ if ($method == 'edit_student_do'){
     report_by_student1();
 }
 function edit_student_do(){
-    include 'mysql.php';
+    include '../mysql.php';
     $id = $_POST['id'];
-    $name = $_POST['name'];
-    $tel = $_POST['tel'];
-    $address = $_POST['address'];
+//    $name = $_POST['name'];
+//    $tel = $_POST['tel'];
+//    $address = $_POST['address'];
     $program_id = $_POST['program'];
-    $dob = $_POST['dob'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $sql = "update student set program_id='$program_id',name='$name',password='$password',email='$email',tel='$tel',address='$address',dob='$dob' where student_id=$id";
+//    $dob = $_POST['dob'];
+//    $email = $_POST['email'];
+    // $password = $_POST['password'];
+    $sql = "update student set program_id='$program_id' where student_id=$id";
+//    $sql = "update student set program_id='$program_id',name='$name',email='$email',tel='$tel',address='$address',dob='$dob' where student_id=$id";
     if(mysqli_query($conn,$sql))
     {
         echo ' Updated succesfully!';

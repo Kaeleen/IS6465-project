@@ -10,62 +10,72 @@ if(isset($_SESSION['user'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Advisor Info</title>
-    <style>
-        .adds-stu-wrap{
-            width: 700px;
-            height: auto;
-            margin: 0 auto;
-            margin-top: 100px;
+    <head>
+        <title>Add Advisor Information</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../RegistrationStyle.css" > 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <a style="margin: 10px" href="../login.php">log out</a>
 
-        }
-        .adds-stu{
-            float: left;
-            width: 100%;
-            height: auto;
-            background-color: #eee;
-            padding: 15px 10px;
-        }
-        .adds-stu div{
-            float: left;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .adds-stu div>p{
-            float: left;
-            width: 100px;
-            margin: 0 10px 0 0;
-            text-align: right;
+    </head>
+    
+    <body id="AddAdvisorInfoPage">
+        
+    <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#OptionsPage"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="../index_admin.php">Student</a></li>
+                        <li><a href="../advisor/advisor.php">Advisor</a></li>
+                        <li><a href="../faculty/faculty.php">Faculty</a></li>
+                        <li><a href="../course/course.php">Course</a></li>
+                        <li><a href="../program/program.php">Program</a></li>
+                        <li><a href="../report.php">Reports</a></li>
+                        <li><a href="../prereq/prereqs.php">Prerequisites</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+    <!-- Header -->
+        <div class="jumbotron text-center">
+            <h1>INTI College</h1>
+        </div>
+        <div class="container-fluid bg-grey text-center" >
+            <div class="row">
+                <div class="col">
+                    <h2 class="head">Add Advisor Information</h2>
+                </div>
+            </div>
 
-        }
-        .adds-stu div>input{
-            float: left;
-            width: 260px;
-        }
-    </style>
-</head>
-<body>
-<div class="adds-stu-wrap">
-    <h2 class="head" style="text-align:center">Add advisor Info</h2>
-    <div class="adds-stu">
-        <form action="add_do.php" method="post">
-            <div>
-                <p>Name:</p>
-                <input type="text" name="name" id="">
-            </div>
-            <div>
-                <p>Password:</p>
-                <input type="text" name="password" id="">
-            </div>
-            <div style="text-align: center">
-                <button >Submit</button>
-            </div>
-        </form>
-    </div>
-</div>
-</body>
+            <form class="form-horizontal" action="add_do.php" method="post">
+                <div class="form-group col-md-6">
+                    <label class="control-label col-md-4" for="studentName">Name:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" name="name" id="">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label col-md-4" for="password">Password:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" name="password" id="">
+                    </div>
+                </div>
+                <div style="text-align: center">
+                    <button class="btn btn-default">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </body>
 </html>

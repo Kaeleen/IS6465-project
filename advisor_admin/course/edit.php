@@ -1,5 +1,5 @@
 <?php
-include '../mysql.php';
+include '../../mysql.php';
 if(isset($_GET['id']))
 {
 $id = $_GET['id'];
@@ -32,7 +32,7 @@ $department_result = mysqli_query($conn,$sql4);
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <a style="margin: 10px" href="../login.php">log out</a>
+            <a style="margin: 10px" href="../../login.php">log out</a>
     </head>
     
     <body id="updateCoursePage">
@@ -45,13 +45,9 @@ $department_result = mysqli_query($conn,$sql4);
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="../index_admin.php">Student</a></li>
-                        <li><a href="../advisor/advisor.php">Advisor</a></li>
-                        <li><a href="../faculty/faculty.php">Faculty</a></li>
+                        <li><a href="../index_advisor.php">Student</a></li>
                         <li><a href="../course/course.php">Course</a></li>
-                        <li><a href="../program/program.php">Program</a></li>
                         <li><a href="../report.php">Reports</a></li>
-                        <li><a href="../prereq/prereqs.php">Prerequisites</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,31 +76,46 @@ $department_result = mysqli_query($conn,$sql4);
                                 <div class="form-group col-md-6">
                                     <label class="control-label col-md-4" for="courseName">Name:</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" type="text" name="name" id="" value="<?php echo  $row['course_name'];  ?>">
+                                        <input class="form-control" type="text" disabled name="name" id="" value="<?php echo  $row['course_name'];  ?>">
                                         <input class="form-control" type="hidden" name="id" id="" value="<?php echo  $row['course_id'];  ?>">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label col-md-4" for="credit">Credits:</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" type="text" name="credit" id="" value="<?php echo  $row['credit'];  ?>">
+                                        <input class="form-control" disabled type="text" name="credit" id="" value="<?php echo  $row['credit'];  ?>">
                                     </div>  
                                 </div>
+<!--                                <div class="form-group col-md-6">-->
+<!--                                    <label class="control-label col-md-4" for="Quota">Quota:</label>-->
+<!--                                    <div class="col-md-8">-->
+<!--                                        <input class="form-control" type="text" name="quota" id="" value="--><?php //echo  $row['quota'];  ?><!--">-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div class="form-group col-md-6">
                                     <label class="control-label col-md-4" for="Semester">Semester:</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" type="text" name="semester" id="" value="<?php echo  $row['semester'];  ?>">
+                                        <input class="form-control" disabled type="text" name="semester" id="" value="<?php echo  $row['semester'];  ?>">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label col-md-4" for="Year">Year:</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" type="text" name="year" id="" value="<?php echo  $row['year'];  ?>">
+                                        <input class="form-control"  disabled type="text" name="year" id="" value="<?php echo  $row['year'];  ?>">
                                     </div>
                                 </div>
+<!--                                <div class="form-group col-md-6">-->
+<!--                                    <label class="control-label col-md-4" for="enrollment">Open For Enrollment:</label>-->
+<!--                                    <div class="col-md-8">-->
+<!--                                        <input class="form-control" type="text" name="opne_for_enrollment" id="" value="--><?php //echo  $row['opne_for_enrollment'];  ?><!--">-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div class="form-group col-md-6">
                                     <label class="control-label col-md-4" for="Department">Department:</label>
-                                <select name="department_id">
+<!--                                    <div class="col-md-8">-->
+<!--                                        <input class="form-control" type="text" name="department_id" id="" value="--><?php //echo  $row['department_id'];  ?><!--">-->
+<!--                                    </div>-->
+                                <select name="department_id" disabled>
                                     <?php
                                     if(mysqli_num_rows($department_result) > 0){
                                         while ($row1 = mysqli_fetch_assoc($department_result)) {
@@ -145,28 +156,28 @@ $department_result = mysqli_query($conn,$sql4);
             <div class="col justify-content-center">
                 <table class="table">
                     <tr>
-                        <th>id</th>
-                        <th>Session Days</th>
-                        <th>Session Time</th>
-                        <th>Session limit</th>
-                        <th>Advisor</th>
-                        <th>Location</th>
-                         <th>Options</th>
+                        <th align="center">id</th>
+                        <th align="center">Session Days</th>
+                        <th align="center">Session Time</th>
+                        <th align="center">Session limit</th>
+                        <th align="center">Advisor</th>
+                        <th align="center">Location</th>
+<!--                         <th>Options</th>-->
                     </tr>
                     <?php
                     if(mysqli_num_rows($result2) > 0){
                         while ($row = mysqli_fetch_assoc($result2)) {
                             ?>
                             <tr>
-                                <td align="center"><?php echo  $row['session_id'];  ?></td>
-                                <td align="center"><?php echo  $row['s_days'];  ?></td>
-                                <td align="center"><?php echo  $row['s_time'];  ?></td>
-                                <td align="center"><?php echo  $row['quota'];  ?></td>
-                                <td align="center"><?php echo  $row['advisor'];  ?></td>
-                                <td align="center"><?php echo  $row['location'];  ?></td>
-                                    <td align="center">
-                                        <a href="edit_session.php?id=<?php echo  $row['session_id'];  ?>" style="color:forestgreen">Update</a> | <a href="javascript:del_sure(<?php echo  $row['session_id'];  ?>)" style="color:crimson">Delete</a>
-                                    </td>
+                                <td><?php echo  $row['session_id'];  ?></td>
+                                <td><?php echo  $row['s_days'];  ?></td>
+                                <td><?php echo  $row['s_time'];  ?></td>
+                                <td><?php echo  $row['quota'];  ?></td>
+                                <td><?php echo  $row['advisor'];  ?></td>
+                                <td><?php echo  $row['location'];  ?></td>
+<!--                                    <td align="center">-->
+<!--                                        <a href="edit.php?id=--><?php //echo  $row['session_id'];  ?><!--" style="color:forestgreen">Update</a> | <a href="javascript:del_sure(--><?php //echo  $row['session_id'];  ?><!--)" style="color:crimson">Delete</a>|<a href="detail.php?id=--><?php //echo  $row['session_id'];  ?><!--" style="color:forestgreen">detail</a>-->
+<!--                                    </td>-->
                             </tr>
                             <?php
                         }
@@ -175,81 +186,6 @@ $department_result = mysqli_query($conn,$sql4);
                 </table>
             </div>
 
-             <div class="container-fluid bg-grey text-center" >
-                <div class="row">
-                    <div class="col">
-                        <h3 class="head">Add Session Information</h3>
-                    </div>
-                </div>
-
-
-                <form class="form-horizontal" action="add_session_do.php" method="post">
-                    <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="sessionDays">Session Days:</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" name="s_days" id="">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="sessionTime">Session Time:</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" name="s_time" id="">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-6" hidden>
-                        <label class="control-label col-md-4" for="courseID">Course Name:</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" name="course_id" value="<?php echo  $id;  ?>" id="">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="quota">Student Limit:</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" name="quota" id="">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="advisorID">Advisor:</label>
-                        <div class="col-md-8">
-                            <select name="advisor_id">
-                                <?php
-                                if(mysqli_num_rows($advisor_result) > 0){
-                                    while ($row1 = mysqli_fetch_assoc($advisor_result)) {
-                                        ?>
-                                        <option value ="<?php echo  $row1['advisor_id'];  ?>"><?php echo  $row1['name'];  ?></option>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="location">Location:</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" name="location" id="">
-                        </div>
-                    </div>
-
-                    <div style="text-align: center">
-                        <button class="btn btn-default">Submit</button>
-                    </div>
-                </form>
-            </div>
         </div>
     </body>
-    <script>
-        function del_sure(id){
-            if(confirm("Confirm to delete") ==true){
-                window.location.href="delete_session.php?id="+id+"&couser_id="+<?php echo  $id;  ?>;
-            }else{
-                return ;
-            }
-        }
-    </script>
 </html>

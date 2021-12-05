@@ -12,10 +12,10 @@ $sql = "update session set s_days='$s_days',s_time='$s_time',course_id='$course_
 if(mysqli_query($conn,$sql))
 {
     echo ' Updated succesfully!';
-    header("refresh:1;url=session.php");
+    header("refresh:1;url=edit.php?id=$course_id");
     print('Loading...<br>Will redirect to homepage after 1 seconds');
 }else{
     echo 'No data';
-    header("refresh:1;url=index_admin.php");
+    header("refresh:1;url=edit.php?id=$course_id");
     print('Loading...<br>Will redirect to homepage after 1 seconds');
 }

@@ -20,136 +20,186 @@ $semester = array_unique($semester);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Update student info</title>
-    <style>
-        .adds-stu-wrap{
-            width: 700px;
-            height: auto;
-            margin: 0 auto;
-            margin-top: 100px;
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Enrollment</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="RegistrationStyle.css" > 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        }
-        .adds-stu{
-            float: left;
-            width: 100%;
-            height: auto;
-            background-color: #eee;
-            padding: 15px 10px;
-        }
-        .adds-stu div{
-            float: left;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .adds-stu div>p{
-            float: left;
-            width: 100px;
-            margin: 0 10px 0 0;
-            text-align: right;
 
-        }
-        .adds-stu div>input{
-            float: left;
-            width: 260px;
-        }
-    </style>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <a style="margin: 10px" href="edit_student.php?year=2021&semester=Fall&id=<?php echo  $student_info['student_id'];  ?>">Go Back</a>
-</head>
-<body>
-<div class="adds-stu-wrap" style="display: block">
-    <h2 class="head" style="text-align:center"> Student Profile</h2>
-    <div class="adds-stu">
-        <form action="edit_student_do.php" method="post">
-                    <div>
-                        <p>Name:</p>
-                        <input type="text" name="name" disabled id="" value="<?php echo  $student_info['name'];  ?>">
-                        <input type="hidden" name="id" id="" value="<?php echo  $student_info['student_id'];  ?>">
-                        <input type="hidden" name="method" id="" value="edit_student_do">
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+        <a style="margin: 10px" href="edit_student.php?year=2021&semester=Fall&id=<?php echo  $student_info['student_id'];  ?>">Go Back</a>
+        <a style="margin: 10px" href="login.php">log out</a>
+    </head>
+
+<body id="adminAddEnrollmentPage">
+        
+    <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#OptionsPage"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index_admin.php">Student</a></li>
+                        <li><a href="advisor/advisor.php">Advisor</a></li>
+                        <li><a href="faculty/faculty.php">Faculty</a></li>
+                        <li><a href="course/course.php">Course</a></li>
+                        <li><a href="program/program.php">Program</a></li>
+                        <li><a href="report.php">Reports</a></li>
+                        <li><a href="prereq/prereqs.php">Prerequisites</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+      <!-- Header -->
+        <div class="jumbotron text-center">
+            <h1>INTI College</h1>
+        </div>
+        
+<div class="container-fluid bg-grey text-center" >
+            <div class="row">
+                <div class="col">
+                    <h2 class="head">Student Profile</h2>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col justify-content-center">
+                <form class="form-horizontal"  action="edit_student_do.php" method="post">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="studentName">Name:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="name" disabled id="" value="<?php echo  $student_info['name'];  ?>">
+                            <input type="hidden" name="id" id="" value="<?php echo  $student_info['student_id'];  ?>">
+                            <input type="hidden" name="method" id="" value="edit_student_do">
+                        </div>
                     </div>
-                    <div>
-                        <p>Tel:</p>
-                        <input type="text" name="tel" id=""  disabled value="<?php echo  $student_info['tel'];  ?>">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="studentName">Telephone:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="tel" id="" disabled value="<?php echo  $student_info['tel'];  ?>">
+                        </div>   
                     </div>
-                    <div>
-                        <p>Address:</p>
-                        <input type="text" name="address" id="" disabled value="<?php echo  $student_info['address'];  ?>">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="studentName">Email:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="email" id="" disabled value="<?php echo  $student_info['email'];  ?>">
+                        </div>    
                     </div>
-                     <div>
-                        <p>Email:</p>
-                        <input type="text" name="email" id="" disabled value="<?php echo  $student_info['email'];  ?>">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="studentName">Password:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="password" id="" disabled value="<?php echo  $student_info['password'];  ?>">
+                        </div>   
                     </div>
-                    <div>
-                        <p>program:</p>
-                        <input type="text" name="program" id="" disabled value="<?php echo  $student_info['program_name'];  ?>">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="studentName">Address:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="address" id="" disabled value="<?php echo  $student_info['address'];  ?>">
+                        </div>    
                     </div>
-                    <div>
-                        <p>Date of Birth:</p>
-                        <input type="text" name="dob" id=""  disabled value="<?php echo  $student_info['dob'];  ?>">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="studentName">Program:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="program" id="" disabled value="<?php echo  $student_info['program_name'];  ?>">
+                        </div>   
                     </div>
-                    <div>
-                    </div>
-        </form>
-    </div>
-</div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="studentName">Date of Birth:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="dob" id="" disabled value="<?php echo  $student_info['dob'];  ?>">
+                        </div> 
+                    </div> 
+                </form>
+            </div>
+        </div>
 
 <!--add begin-->
-<div class="adds-stu-wrap" style="display: block">
-    <h2 class="head" style="text-align:center">Add Course </h2>
-    <div class="adds-stu">
-        <form action="edit_student_do.php" method="post">
-            <div style="text-align: center;margin-top: 80px">
-                year:
-                <select name="year" id="year" onchange="get_course()">
-                    <?php
-                    foreach ($year as $item){
-                        ?>
-                        <option value ="<?php echo  $item;  ?>"  ><?php echo  $item;  ?></option>
-                        <?php
-                    }
+         <div class="container-fluid bg-grey text-center" >
+                <div class="row">
+                    <div class="col">
+                        <h2 class="head">Add Course </h2>
+                    </div>
+                </div>
+             
+                <form class="form-horizontal" action="edit_student_do.php" method="post">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label col-md-4" for="year">Year:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="year" id="year" onchange="get_course()">
+                                    <?php
+                                    foreach ($year as $item){
+                                        ?>
+                                        <option value ="<?php echo  $item;  ?>"  ><?php echo  $item;  ?></option>
+                                        <?php
+                                    }
 
-                    ?>
-                </select>
-                semester:
-                <select name="semester" id="semester" onchange="get_course()">
-                    <?php
-                    foreach ($semester as $item){
-                        ?>
-                        <option value ="<?php echo  $item;  ?>" ><?php echo  $item;  ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label col-md-4" for="semester">Semester:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="semester" id="semester" onchange="get_course()">
+                                    <?php
+                                    foreach ($semester as $item){
+                                        ?>
+                                        <option value ="<?php echo  $item;  ?>" ><?php echo  $item;  ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label col-md-4" for="course">Course:</label>
+                            <div class="col-md-8"> 
+                                <select class="form-control" name="course" id="course" onchange="get_session()"></select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label col-md-4" for="session">Session:</label>
+                            <div class="col-md-8"> 
+                                <select class="form-control" name="session" id="session"></select>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label col-md-4" for="course">Grade:</label>
+                            <div class="col-md-8"> 
+                                <input class="form-control" type="text" name="grade" id="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="hidden" name="student" id="" value="<?php echo  $student_info['student_id'];  ?>">
+                        <input type="hidden" name="method" id="" value="add_enrollment">
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-default" >Add Course</button>
+                    </div>
+                </form>
             </div>
-            <div style="text-align: center;margin-top: 80px">
-                course:
-                <select name="course" id="course" onchange="get_session()">
-
-                </select>
-                session:
-                <select name="session" id="session">
-
-                </select>
-            </div>
-            <div>
-                <p>grade:</p>
-                <input type="text" name="grade" id="" value="">
-            </div>
-            <div>
-                <input type="hidden" name="student" id="" value="<?php echo  $student_info['student_id'];  ?>">
-                <input type="hidden" name="method" id="" value="add_enrollment">
-            </div>
-            <div>
-                <button>add course</button>
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
 <!--add end-->
 
 

@@ -65,6 +65,7 @@ if ($resultGPA){
         <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
         <a style="margin: 10px" href="index_admin.php">Go Back</a>
+        <a style="margin: 10px" href="login.php">log out</a>
     </head>
     
     <body id="StudentInfoPage">
@@ -83,6 +84,8 @@ if ($resultGPA){
                         <li><a href="course/course.php">Course</a></li>
                         <li><a href="program/program.php">Program</a></li>
                         <li><a href="report.php">Reports</a></li>
+                        <li><a href="prereq/prereqs.php">Prerequisites</a></li>
+
                     </ul>
                 </div>
             </div>
