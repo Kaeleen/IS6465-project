@@ -20,6 +20,7 @@ $result = mysqli_query($conn,$sql);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Update Course info</title>
+        <a style="margin: 10px" href="../login.php">log out</a>
 
     </head>
     
@@ -39,6 +40,7 @@ $result = mysqli_query($conn,$sql);
                         <li><a href="../course/course.php">Course</a></li>
                         <li><a href="../program/program.php">Program</a></li>
                         <li><a href="../report.php">Reports</a></li>
+                        <li><a href="../prereq/prereqs.php">Prerequisites</a></li>
                     </ul>
                 </div>
             </div>

@@ -111,8 +111,8 @@ function add_enrollment(){
 
     $session_old_has_result = mysqli_query($conn,$session_old_has);
     if ($session_old_row = mysqli_fetch_assoc($session_old_has_result)){
-        if ($session_old_row['countid'] > $max){
-            echo ' the session is ful';
+        if ($session_old_row['countid'] >= $max){
+            echo ' the session is full';
             header("refresh:1;url=index_student.php?year=2021&semester=Fall&id=$student_id");
             return ;
         }

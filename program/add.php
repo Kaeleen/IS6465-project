@@ -41,6 +41,7 @@ if(isset($_SESSION['user'])){
                         <li><a href="../course/course.php">Course</a></li>
                         <li><a href="../program/program.php">Program</a></li>
                         <li><a href="../report.php">Reports</a></li>
+                        <li><a href="../prereq/prereqs.php">Prerequisites</a></li>
                     </ul>
                 </div>
             </div>
