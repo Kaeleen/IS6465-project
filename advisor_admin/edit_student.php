@@ -33,9 +33,9 @@ while($row = mysqli_fetch_assoc($courseResult)) {
     $coursrIds[] = $row['course_id'];
 }
 $coursrIds = implode(',', $coursrIds);
-$sql2 = "select enrollment.* ,course.*,session .* from enrollment left join course on enrollment.course_id=course.course_id  left join session on enrollment.course_id=session.course_id  where enrollment.student_id = '$student_id' and  enrollment.course_id  in ($coursrIds) group by enrollment_id ";
+$sql2 = "select enrollment.* ,course.*,session .* from enrollment left join course on enrollment.course_id=course.course_id  left join session on enrollment.course_id=session.course_id  where enrollment.student_id = '$student_id' and  enrollment.course_id  in ($coursrIds)  group by enrollment.enrollment_id ";
 $result2 = mysqli_query($conn,$sql2);
-$sql_GPA = "select sum( grade * credit)/sum(credit) as gpa from enrollment left join course on enrollment.course_id =course.course_id  where enrollment.student_id = '$student_id' and  enrollment.course_id  in ($coursrIds) ";
+$sql_GPA = "select sum( grade * credit)/sum(credit) as gpa from enrollment left join course on enrollment.course_id =course.course_id  where enrollment.student_id = '$student_id' and  enrollment.date_dropped is null  and  enrollment.course_id  in ($coursrIds) ";
 $resultGPA = mysqli_query($conn,$sql_GPA);
 $gpa=0;
 if ($resultGPA){

@@ -7,8 +7,9 @@ $s_time = $_POST['s_time'];
 $course_id = $_POST['course_id'];
 $advisor_id = $_POST['advisor_id'];
 $location = $_POST['location'];
+$quota = $_POST['quota'];
 //sql query
-$sql = "update session set s_days='$s_days',s_time='$s_time',course_id='$course_id',advisor_id='$advisor_id',location='$location' where session_id=$id";
+$sql = "update session set s_days='$s_days',s_time='$s_time',course_id='$course_id',advisor_id='$advisor_id',location='$location', quota='$quota' where session_id=$id";
 if(mysqli_query($conn,$sql))
 {
     echo ' Updated succesfully!';

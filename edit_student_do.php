@@ -153,7 +153,7 @@ function report_by_student(){
     $courseid = $_POST['courseid'];
     $gpa1 = $_POST['gpa1'];
     $gpa2 = $_POST['gpa2'];
-    $sql_GPA = "select sum( grade * credit)/sum(credit) as gpa,enrollment_id from enrollment  left join course on enrollment.course_id =course.course_id  where  enrollment.course_id  = $courseid group by enrollment.student_id";
+    $sql_GPA = "select sum( grade * credit)/sum(credit) as gpa,enrollment_id from enrollment  left join course on enrollment.course_id =course.course_id  where  enrollment.course_id  = $courseid and enrollment.date_dropped is null group by enrollment.student_id";
     $resultGPA = mysqli_query($conn,$sql_GPA);
     $gpa=0;
     $eids = [];
@@ -198,7 +198,7 @@ function report_by_student1()
         $coursrIds[] = $row['course_id'];
     }
     $coursrIds = implode(',', $coursrIds);
-    $sql2 = "select enrollment.* ,course.* ,count(enrollment.course_id) as count,department.department_name from enrollment left join course on enrollment.course_id=course.course_id  left join department on department.department_id=course.department_id where  enrollment.course_id  in ($coursrIds) group by enrollment.course_id ";
+    $sql2 = "select enrollment.* ,course.* ,count(enrollment.course_id) as count,department.department_name from enrollment left join course on enrollment.course_id=course.course_id  left join department on department.department_id=course.department_id where  enrollment.course_id  in ($coursrIds)  and  enrollment.date_dropped is null group by enrollment.course_id ";
     $result2 = mysqli_query($conn,$sql2);
     $rows = [];
     if ($result2) {

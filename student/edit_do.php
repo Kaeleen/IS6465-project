@@ -97,7 +97,6 @@ function get_session(){
 function add_enrollment(){
     include '../mysql.php';
     $student_id = $_POST['student'];
-    // $grade = $_POST['grade'] ?: 0;
     $course_id = $_POST['course'];
     $session_id= $_POST['session'];
     $date = date('Y-m-d');
@@ -107,12 +106,12 @@ function add_enrollment(){
     if ($maxrow = mysqli_fetch_assoc($session_has_result)){
         $max = $maxrow['quota'];
     }
-    $session_old_has = "select count(*) as countid from enrollment where session_id=$session_id ";
+    $session_old_has = "select count(*) as countid from enrollment where session_id=$session_id  and  date_dropped is null ";
 
     $session_old_has_result = mysqli_query($conn,$session_old_has);
     if ($session_old_row = mysqli_fetch_assoc($session_old_has_result)){
         if ($session_old_row['countid'] >= $max){
-            echo ' the session is full';
+            echo ' the session is ful';
             header("refresh:1;url=index_student.php?year=2021&semester=Fall&id=$student_id");
             return ;
         }

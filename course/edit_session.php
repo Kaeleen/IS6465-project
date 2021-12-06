@@ -110,6 +110,14 @@ $advisor_result = mysqli_query($conn,$sql3);
                                     <input class="form-control" type="text" name="location" id="" value="<?php echo  $row['location'];  ?>">
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4" for="sessionLocation">Session Limit:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" name="quota" id="" value="<?php echo  $row['quota'];  ?>">
+                                </div>
+                            </div>
+
                             <div>
                                 <button class="btn btn-default">Submit</button>
                             </div>
